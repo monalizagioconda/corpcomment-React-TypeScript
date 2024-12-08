@@ -26,11 +26,11 @@ export const useFeedbackItemsStore = create<Store>((set, get) => ({
       });
   },
   getFilteredFeedbackItems: () => {
-    const state = get();
+    const { feedbackItems, selectedCompany } = get();
 
-    return state.selectedCompany
-      ? state.feedbackItems.filter(feedbackItem => feedbackItem.company === state.selectedCompany)
-      : state.feedbackItems;
+    return selectedCompany
+      ? feedbackItems.filter(feedbackItem => feedbackItem.company === selectedCompany)
+      : feedbackItems;
   },
   addItemToList: async (text: string) => {
     const companyName = text
@@ -97,3 +97,5 @@ export const useFeedbackItemsStore = create<Store>((set, get) => ({
     }));
   },
 }));
+
+export const feedbackItemsSelector = (state: Store) => state.fetchFeedbackItems;

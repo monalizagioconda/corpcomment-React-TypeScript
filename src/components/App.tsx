@@ -1,11 +1,11 @@
 import Footer from "./layout/Footer";
 import Container from "./layout/Container";
 import HashtagList from "./hashtag/HashtagList";
-import { useFeedbackItemsStore } from "../stores/feedbackItemsStore";
+import { feedbackItemsSelector, useFeedbackItemsStore } from "../stores/feedbackItemsStore";
 import { useEffect } from "react";
 
 function App() {
-  const fetchFeedbackItems = useFeedbackItemsStore(state => state.fetchFeedbackItems);
+  const fetchFeedbackItems = useFeedbackItemsStore(feedbackItemsSelector);
 
   useEffect(() => {
     fetchFeedbackItems();
