@@ -1,45 +1,45 @@
-import { useState } from "react";
-import { MAX_CHARACTERS } from "../../lib/constants";
+import { useState } from 'react'
+import { MAX_CHARACTERS } from '../../lib/constants'
 
 type FeedbackFormProps = {
-  onAddToList: (text: string) => void;
-};
+  onAddToList: (text: string) => void
+}
 
 export default function FeedbackForm({ onAddToList }: FeedbackFormProps) {
-  const [text, setText] = useState("");
-  const [showValidIndicator, setShowValidIndicator] = useState(false);
-  const [showInvalidIndicator, setShowInvalidIndicator] = useState(false);
-  const charCount = MAX_CHARACTERS - text.length;
+  const [text, setText] = useState('')
+  const [showValidIndicator, setShowValidIndicator] = useState(false)
+  const [showInvalidIndicator, setShowInvalidIndicator] = useState(false)
+  const charCount = MAX_CHARACTERS - text.length
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newText = event.target.value;
+    const newText = event.target.value
     if (newText.length > MAX_CHARACTERS) {
-      return;
+      return
     }
-    setText(newText);
-  };
+    setText(newText)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     // basic validation
-    if (text.includes("#") && text.length >= 5) {
-      setShowValidIndicator(true);
-      setTimeout(() => setShowValidIndicator(false), 2000);
+    if (text.includes('#') && text.length >= 5) {
+      setShowValidIndicator(true)
+      setTimeout(() => setShowValidIndicator(false), 2000)
     } else {
-      setShowInvalidIndicator(true);
-      setTimeout(() => setShowInvalidIndicator(false), 2000);
-      return;
+      setShowInvalidIndicator(true)
+      setTimeout(() => setShowInvalidIndicator(false), 2000)
+      return
     }
 
-    onAddToList(text);
-    setText("");
-  };
+    onAddToList(text)
+    setText('')
+  }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={`form ${showValidIndicator ? "form--valid" : ""} ${showInvalidIndicator ? "form--invalid" : ""}`}
+      className={`form ${showValidIndicator ? 'form--valid' : ''} ${showInvalidIndicator ? 'form--invalid' : ''}`}
     >
       <textarea value={text} onChange={handleChange} id="feedback-textarea" placeholder="blabla" spellCheck={false} />
 
@@ -52,5 +52,5 @@ export default function FeedbackForm({ onAddToList }: FeedbackFormProps) {
         </button>
       </div>
     </form>
-  );
+  )
 }

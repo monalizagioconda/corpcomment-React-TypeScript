@@ -1,15 +1,15 @@
-import Footer from "./layout/Footer";
-import Container from "./layout/Container";
-import HashtagList from "./hashtag/HashtagList";
-import { feedbackItemsSelector, useFeedbackItemsStore } from "../stores/feedbackItemsStore";
-import { useEffect } from "react";
+import Footer from './layout/Footer'
+import Container from './layout/Container'
+import HashtagList from './hashtag/HashtagList'
+import { feedbackItemsSelector, useFeedbackItemsStore } from '../stores/feedbackItemsStore'
+import { useEffect } from 'react'
 
 function App() {
-  const fetchFeedbackItems = useFeedbackItemsStore(feedbackItemsSelector);
+  const fetchFeedbackItems = useFeedbackItemsStore(feedbackItemsSelector)
 
   useEffect(() => {
-    fetchFeedbackItems();
-  }, [fetchFeedbackItems]);
+    fetchFeedbackItems()
+  }, [fetchFeedbackItems])
 
   return (
     <div className="app">
@@ -19,7 +19,7 @@ function App() {
 
       <HashtagList />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
